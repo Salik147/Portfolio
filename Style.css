@@ -1,8 +1,5 @@
-﻿body {
-    /* Reset some default styles */
-    body, h1, h2, h3, p
-
-{
+﻿/* Reset some default styles */
+body, h1, h2, h3, p {
     margin: 0;
     padding: 0;
 }
@@ -34,10 +31,10 @@ header {
     padding: 2em;
 }
 
-    .about h2, .projects h2, .education h2 {
-        font-size: 2em;
-        margin-bottom: 1em;
-    }
+.about h2, .projects h2, .education h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
 
 .project {
     background-color: #fff;
@@ -47,14 +44,14 @@ header {
     margin-bottom: 1.5em;
 }
 
-    .project h3 {
-        font-size: 1.5em;
-        margin-bottom: 0.5em;
-    }
+.project h3 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
 
-    .project p {
-        font-size: 1.1em;
-    }
+.project p {
+    font-size: 1.1em;
+}
 
 .education p {
     font-size: 1.1em;
@@ -73,7 +70,6 @@ header {
         opacity: 0;
         transform: translateY(20px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -83,6 +79,4 @@ header {
 .animated {
     animation-duration: 1s;
     animation-fill-mode: both;
-}
-
 }
