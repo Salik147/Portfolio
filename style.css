@@ -6,9 +6,9 @@
 
 :root {
     --bg: #f8f8f6;
-    --text: #111111;
+    --text: #000000;
     --card: #222222;
-    --gold: #c9940a;
+    --gold: #D4AF37;
     --border: rgba(0, 0, 0, 0.08);
 }
 
@@ -83,6 +83,7 @@ nav a:hover {
 
 .hero a:hover {
     text-decoration: underline;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
 }
 
 /* =========================
@@ -114,7 +115,7 @@ nav a:hover {
 .project p {
     max-width: 700px;
     margin-bottom: 40px;
-    color: #444;
+    color: #000;
 }
 
 /* =========================

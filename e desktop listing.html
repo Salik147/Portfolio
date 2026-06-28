@@ -485,16 +485,14 @@ nav a:hover{
   // ── Card data ───────────────────────────────────────────────────
   // To add an image: set image to a URL string, e.g. 'images/shot1.jpg'
   var cards = [
-    { title: 'Cravings.pk', meta: 'Desktop Design · 2024', image: 'ed1.png' },
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'ed11.png' },
-    { title: 'Cravings.pk', meta: 'Mobile Design · 2024',  image: 'ed21.png' },
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'ed2.png' },
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'ed3.png' },
-    
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'ed4.png' },
-   
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'ed5.png' },
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'ed6.png' },
+    { title: 'Store', meta: 'Desktop Design · 2026', image: 'ed1.png' },
+    { title: 'Store', meta: 'Desktop Design · 2026',  image: 'ed11.png' },
+    { title: 'Store', meta: 'Desktop Design · 2026',  image: 'ed21.png' },
+    { title: 'Store', meta: 'Desktop Design · 2026',  image: 'ed2.png' },
+    { title: 'Store', meta: 'Desktop Design · 2026',  image: 'ed3.png' },
+    { title: 'Store', meta: 'Desktop Design · 2026',  image: 'ed4.png' },
+    { title: 'Store', meta: 'Desktop Design · 2026',  image: 'ed5.png' },
+    { title: 'Store', meta: 'Desktop Design · 2026',  image: 'ed6.png' },
    
     
     
@@ -586,71 +584,47 @@ function openLightbox(i) {
       updateZoom();
     });
 
-    // Mouse wheel zoom
-    wrap.addEventListener('wheel', function(e) {
-      e.preventDefault();
+  
+   // Drag to Pan (works anywhere on image)
 
-      if (e.deltaY < 0) {
-        zoomLevel += 0.1;
-      } else {
-        zoomLevel = Math.max(0.5, zoomLevel - 0.1);
-      }
+let isDragging = false;
+let startX = 0;
+let startY = 0;
+let scrollLeft = 0;
+let scrollTop = 0;
 
-      updateZoom();
-    });
-
-    // Drag to pan
-    let isDragging = false;
-    let startX, startY, scrollLeft, scrollTop;
-
-    wrap.addEventListener('mousedown', function(e) {
-      if (zoomLevel <= 1) return;
-
-      isDragging = true;
-      startX = e.pageX;
-      startY = e.pageY;
-      scrollLeft = wrap.scrollLeft;
-      scrollTop = wrap.scrollTop;
-      wrap.style.cursor = 'grabbing';
-    });
-
-    window.addEventListener('mouseup', function() {
-      isDragging = false;
-      wrap.style.cursor = 'grab';
-    });
-
-    wrap.addEventListener('mousemove', function(e) {
-      if (!isDragging) return;
-
-      e.preventDefault();
-
-      wrap.scrollLeft = scrollLeft - (e.pageX - startX);
-      wrap.scrollTop  = scrollTop - (e.pageY - startY);
-    });
-    // Touch drag for mobile
-let touchStartX, touchStartY;
-let touchScrollLeft, touchScrollTop;
-
-img.addEventListener('touchstart', function(e) {
-    if (zoomLevel <= 1) return;
-
-    const touch = e.touches[0];
-    touchStartX = touch.pageX;
-    touchStartY = touch.pageY;
-    touchScrollLeft = wrap.scrollLeft;
-    touchScrollTop = wrap.scrollTop;
-}, { passive: true });
-
-img.addEventListener('touchmove', function(e) {
-    if (zoomLevel <= 1) return;
-
-    const touch = e.touches[0];
-
-    wrap.scrollLeft = touchScrollLeft - (touch.pageX - touchStartX);
-    wrap.scrollTop  = touchScrollTop  - (touch.pageY - touchStartY);
+img.addEventListener("mousedown", function (e) {
 
     e.preventDefault();
-}, { passive: false });
+
+    isDragging = true;
+
+    startX = e.clientX;
+    startY = e.clientY;
+
+    scrollLeft = wrap.scrollLeft;
+    scrollTop = wrap.scrollTop;
+
+    wrap.style.cursor = "grabbing";
+});
+
+window.addEventListener("mouseup", function () {
+
+    isDragging = false;
+    wrap.style.cursor = "grab";
+
+});
+
+window.addEventListener("mousemove", function (e) {
+
+    if (!isDragging) return;
+
+    e.preventDefault();
+
+    wrap.scrollLeft = scrollLeft - (e.clientX - startX);
+    wrap.scrollTop = scrollTop - (e.clientY - startY);
+
+});
   } else {
     lbInner.innerHTML =
       '<div class="lb-empty">' +

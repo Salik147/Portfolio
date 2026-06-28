@@ -429,6 +429,19 @@ nav a:hover{
   :root { --pad: 24px; }
   .cards-grid { gap: 24px; }
   .card { width: 100%; max-width: 296px; }
+  
+}
+@media (max-width: 768px) {
+  :root { --pad: 24px; }
+  .cards-grid { gap: 24px; }
+  .card { width: 100%; max-width: 296px; }
+
+  .lb-controls {
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+  }
 }
 </style>
 </head>
@@ -469,26 +482,19 @@ nav a:hover{
   // ── Card data ───────────────────────────────────────────────────
   // To add an image: set image to a URL string, e.g. 'images/shot1.jpg'
   var cards = [
-    { title: 'Cravings.pk', meta: 'Desktop Design · 2024', image: 'rm1.png' },
-    { title: 'Cravings.pk', meta: 'Mobile Design · 2024',  image: 'rm11.png' },
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'rm111.png' },
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'rm2.png' },
-   
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'rm3.png' },
-   
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'rm4.png' },
-   
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'rm5.png' },
-   
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'rm6.png' },
-    
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'rm7.png' },
-   
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'rm8.png' },
-    
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'rm9.png' },
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'rm10.png' },
-     { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'rm11a.png' }
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026', image: 'rm1.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm11.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm111.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm2.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm3.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm4.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm5.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm6.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm7.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm8.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm9.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm10.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm11a.png' }
     
     
   ];
@@ -579,48 +585,48 @@ function openLightbox(i) {
       updateZoom();
     });
 
-    // Mouse wheel zoom
-    wrap.addEventListener('wheel', function(e) {
-      e.preventDefault();
+    
 
-      if (e.deltaY < 0) {
-        zoomLevel += 0.1;
-      } else {
-        zoomLevel = Math.max(0.5, zoomLevel - 0.1);
-      }
+   // Drag to Pan (works anywhere on image)
 
-      updateZoom();
-    });
+let isDragging = false;
+let startX = 0;
+let startY = 0;
+let scrollLeft = 0;
+let scrollTop = 0;
 
-    // Drag to pan
-    let isDragging = false;
-    let startX, startY, scrollLeft, scrollTop;
+img.addEventListener("mousedown", function (e) {
 
-    wrap.addEventListener('mousedown', function(e) {
-      if (zoomLevel <= 1) return;
+    e.preventDefault();
 
-      isDragging = true;
-      startX = e.pageX;
-      startY = e.pageY;
-      scrollLeft = wrap.scrollLeft;
-      scrollTop = wrap.scrollTop;
-      wrap.style.cursor = 'grabbing';
-    });
+    isDragging = true;
 
-    window.addEventListener('mouseup', function() {
-      isDragging = false;
-      wrap.style.cursor = 'grab';
-    });
+    startX = e.clientX;
+    startY = e.clientY;
 
-    wrap.addEventListener('mousemove', function(e) {
-      if (!isDragging) return;
+    scrollLeft = wrap.scrollLeft;
+    scrollTop = wrap.scrollTop;
 
-      e.preventDefault();
+    wrap.style.cursor = "grabbing";
+});
 
-      wrap.scrollLeft = scrollLeft - (e.pageX - startX);
-      wrap.scrollTop  = scrollTop - (e.pageY - startY);
-    });
+window.addEventListener("mouseup", function () {
 
+    isDragging = false;
+    wrap.style.cursor = "grab";
+
+});
+
+window.addEventListener("mousemove", function (e) {
+
+    if (!isDragging) return;
+
+    e.preventDefault();
+
+    wrap.scrollLeft = scrollLeft - (e.clientX - startX);
+    wrap.scrollTop = scrollTop - (e.clientY - startY);
+
+});
   } else {
     lbInner.innerHTML =
       '<div class="lb-empty">' +

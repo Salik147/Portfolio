@@ -428,6 +428,19 @@ nav a:hover{
   :root { --pad: 24px; }
   .cards-grid { gap: 24px; }
   .card { width: 100%; max-width: 296px; }
+  
+}
+@media (max-width: 768px) {
+  :root { --pad: 24px; }
+  .cards-grid { gap: 24px; }
+  .card { width: 100%; max-width: 296px; }
+
+  .lb-controls {
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+  }
 }
 </style>
 </head>
@@ -468,20 +481,15 @@ nav a:hover{
   // ── Card data ───────────────────────────────────────────────────
   // To add an image: set image to a URL string, e.g. 'images/shot1.jpg'
   var cards = [
-    { title: 'Cravings.pk', meta: 'Desktop Design · 2024', image: 'it1.png' },
-    { title: 'Cravings.pk', meta: 'Mobile Design · 2024',  image: 'it11.png' },
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'it111.png' },
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'it2.png' },
-    
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'it3.png' },
-    
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'it4.png' },
-  
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'it5.png' },
-  
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'it6.png' },
-   
-    { title: 'Cravings.pk', meta: 'UI Components · 2024',  image: 'it7.png' },
+    { title: 'SALTECH', meta: 'Tab Design · 2026', image: 'it1.png' },
+    { title: 'SALTECH', meta: 'Tab Design · 2026',  image: 'it11.png' },
+    { title: 'SALTECH', meta: 'Tab Design · 2026',  image: 'it111.png' },
+    { title: 'SALTECH', meta: 'Tab Design · 2026',  image: 'it2.png' },
+    { title: 'SALTECH', meta: 'Tab Design · 2026',  image: 'it3.png' },
+    { title: 'SALTECH', meta: 'Tab Design · 2026',  image: 'it4.png' },
+    { title: 'SALTECH', meta: 'Tab Design · 2026',  image: 'it5.png' },
+    { title: 'SALTECH', meta: 'Tab Design · 2026',  image: 'it6.png' },
+    { title: 'SALTECH', meta: 'Tab Design · 2026',  image: 'it7.png' },
   
     
     
@@ -573,47 +581,47 @@ function openLightbox(i) {
       updateZoom();
     });
 
-    // Mouse wheel zoom
-    wrap.addEventListener('wheel', function(e) {
-      e.preventDefault();
+   
+  // Drag to Pan (works anywhere on image)
 
-      if (e.deltaY < 0) {
-        zoomLevel += 0.1;
-      } else {
-        zoomLevel = Math.max(0.5, zoomLevel - 0.1);
-      }
+let isDragging = false;
+let startX = 0;
+let startY = 0;
+let scrollLeft = 0;
+let scrollTop = 0;
 
-      updateZoom();
-    });
+img.addEventListener("mousedown", function (e) {
 
-    // Drag to pan
-    let isDragging = false;
-    let startX, startY, scrollLeft, scrollTop;
+    e.preventDefault();
 
-    wrap.addEventListener('mousedown', function(e) {
-      if (zoomLevel <= 1) return;
+    isDragging = true;
 
-      isDragging = true;
-      startX = e.pageX;
-      startY = e.pageY;
-      scrollLeft = wrap.scrollLeft;
-      scrollTop = wrap.scrollTop;
-      wrap.style.cursor = 'grabbing';
-    });
+    startX = e.clientX;
+    startY = e.clientY;
 
-    window.addEventListener('mouseup', function() {
-      isDragging = false;
-      wrap.style.cursor = 'grab';
-    });
+    scrollLeft = wrap.scrollLeft;
+    scrollTop = wrap.scrollTop;
 
-    wrap.addEventListener('mousemove', function(e) {
-      if (!isDragging) return;
+    wrap.style.cursor = "grabbing";
+});
 
-      e.preventDefault();
+window.addEventListener("mouseup", function () {
 
-      wrap.scrollLeft = scrollLeft - (e.pageX - startX);
-      wrap.scrollTop  = scrollTop - (e.pageY - startY);
-    });
+    isDragging = false;
+    wrap.style.cursor = "grab";
+
+});
+
+window.addEventListener("mousemove", function (e) {
+
+    if (!isDragging) return;
+
+    e.preventDefault();
+
+    wrap.scrollLeft = scrollLeft - (e.clientX - startX);
+    wrap.scrollTop = scrollTop - (e.clientY - startY);
+
+});
 
   } else {
     lbInner.innerHTML =
