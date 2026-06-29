@@ -229,6 +229,16 @@ nav a:hover{
 .card:hover .card-hint,
 .card:focus-visible .card-hint { opacity: 1; }
 
+
+.lb-image-wrap{
+    overflow:auto;
+    cursor:grab;
+    touch-action:none;      /* VERY IMPORTANT */
+    overscroll-behavior:contain;
+}
+
+
+
 /* ─────────────────────────────────────────
    FOOTER
    ───────────────────────────────────────── */
@@ -276,17 +286,7 @@ nav a:hover{
   opacity: 1;
   transform: scale(1);
 }
-.lb-img {
-  max-width: 90vw;
-  max-height: 82vh;
-  object-fit: contain;
-  border-radius: 8px;
-  display: block;
-  box-shadow:
-    0 0 0 1px var(--gold),
-    0 0 40px 8px var(--gold-mid),
-    0 32px 80px rgba(0,0,0,.6);
-}
+
 .lb-caption {
   text-align: center;
   color: #888;
@@ -337,9 +337,22 @@ nav a:hover{
   padding: 8px;
   transition: color .2s, transform .25s;
 }
-.lb-close:hover {
-  color: var(--gold);
-  transform: rotate(90deg) scale(1.15);
+.lb-close {
+  position: fixed;
+  top: 24px;
+  right: 32px;
+  background: none;
+  border: none;
+  font-size: 36px;
+  font-weight: 300;
+  font-family: var(--font);
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+  padding: 8px;
+  transition: color .2s, transform .25s;
+
+  -webkit-tap-highlight-color: transparent;
 }
 
 
@@ -353,25 +366,21 @@ nav a:hover{
 }
 
 .lb-image-wrap{
-  max-width:90vw;
-  max-height:82vh;
-  overflow:auto;
-  cursor:grab;
+    max-width:90vw;
+    max-height:82vh;
+    overflow:auto;
+    cursor:grab;
+    touch-action:none;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
 }
 
 .lb-image-wrap:active{
-  cursor:grabbing;
+    cursor:grabbing;
 }
 
-.lb-controls{
-  position:absolute;
-  bottom:-60px;
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  gap:12px;
-  z-index:10000;
-}
+
+
 
 .lb-btn{
   width:44px;
@@ -385,11 +394,14 @@ nav a:hover{
 }
 
 .lb-img{
-  display:block;
-  max-width:none;
-  max-height:none;
-  transition:transform .2s ease;
-  transform-origin:top left;
+    display:block;
+    max-width:none;
+    max-height:none;
+    transition:transform .15s ease;
+    transform-origin:top left;
+    user-select:none;
+    -webkit-user-drag:none;
+    pointer-events:none;
 }
 
 /* zoom controls */
@@ -419,29 +431,40 @@ nav a:hover{
   color:#000;
 }
 
-.lb-img{
-  transition:transform .2s ease;
-  transform-origin:center center;
-}
+
 /* ─── responsive ─── */
 @media (max-width: 768px) {
   :root { --pad: 24px; }
   .cards-grid { gap: 24px; }
   .card { width: 100%; max-width: 296px; }
-  
-}
-@media (max-width: 768px) {
-  :root { --pad: 24px; }
-  .cards-grid { gap: 24px; }
-  .card { width: 100%; max-width: 296px; }
-
-  .lb-controls {
+   .lb-controls {
     top: 16px;
     left: 50%;
     transform: translateX(-50%);
     right: auto;
   }
+
+   .lb-img{
+        transform-origin: top left;
+    }
+
+  
 }
+
+@media (hover: hover) and (pointer: fine){
+
+    .lb-close:hover{
+        color:var(--gold);
+        transform:rotate(90deg) scale(1.15);
+    }
+
+    .lb-btn:hover{
+        background:var(--gold);
+        color:#000;
+    }
+
+}
+
 </style>
 </head>
 
@@ -457,8 +480,8 @@ nav a:hover{
 <!-- HERO -->
 <section class="hero">
   <h1 class="hero-title">Designs</h1>
-  <h2 class="hero-sub">Cravings.pk</h2>
-  <h3 class="hero-label">Desktop Design</h3>
+  <h2 class="hero-sub">SALTECH.</h2>
+  <h3 class="hero-label">Mobile Design</h3>
 </section>
 
 <!-- CARDS -->
@@ -478,7 +501,7 @@ nav a:hover{
 </div>
 
 <script>
-  // ── Card data ───────────────────────────────────────────────────
+ // ── Card data ───────────────────────────────────────────────────
   // To add an image: set image to a URL string, e.g. 'images/shot1.jpg'
   var cards = [
     { title: 'SALTECH', meta: 'Mobile Design · 2026', image: 'im1.png' },
@@ -492,163 +515,214 @@ nav a:hover{
     
   ];
 
-  // ── Build cards ─────────────────────────────────────────────────
-  var grid = document.getElementById('grid');
+// ── Build Cards ─────────────────────────────────────────────────
+var grid = document.getElementById("grid");
 
-  cards.forEach(function(card, i) {
-    var el = document.createElement('div');
-    el.className = 'card';
+cards.forEach(function (card, i) {
+
+    var el = document.createElement("div");
+
+    el.className = "card";
     el.tabIndex = 0;
-    el.setAttribute('role', 'button');
-    el.setAttribute('aria-label', 'View ' + card.title);
 
     var imgContent = card.image
-      ? '<img src="' + card.image + '" alt="' + card.title + '" />'
-      : '<div class="placeholder">' +
-          '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/>' +
-          '<circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>' +
-          '<span>Image placeholder</span>' +
-        '</div>';
+        ? '<img src="' + card.image + '" alt="' + card.title + '">'
+        : '<div class="placeholder">No Image</div>';
 
     el.innerHTML =
-      '<span class="card-hint">View</span>' +
-      '<div class="card-img">' + imgContent + '</div>' +
-      '<div class="card-body">' +
+        '<span class="card-hint">View</span>' +
+        '<div class="card-img">' + imgContent + '</div>' +
+        '<div class="card-body">' +
         '<div class="card-title">' + card.title + '</div>' +
-        '<div class="card-meta">'  + card.meta  + '</div>' +
-      '</div>';
+        '<div class="card-meta">' + card.meta + '</div>' +
+        '</div>';
 
-    el.addEventListener('click', function() { openLightbox(i); });
-    el.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(i); }
-    });
+    el.onclick = function () {
+        openLightbox(i);
+    };
+
+    el.onkeydown = function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openLightbox(i);
+        }
+    };
 
     grid.appendChild(el);
-  });
+
+});
+
 // ── Lightbox ────────────────────────────────────────────────────
-var lightbox = document.getElementById('lightbox');
-var lbInner  = document.getElementById('lbInner');
-var lbClose  = document.getElementById('lbClose');
+
+var lightbox = document.getElementById("lightbox");
+var lbInner = document.getElementById("lbInner");
+var lbClose = document.getElementById("lbClose");
 
 var zoomLevel = 1;
 
-function openLightbox(i) {
-  var c = cards[i];
+function openLightbox(index) {
 
-  if (c.image) {
+    var card = cards[index];
+
     lbInner.innerHTML =
-      '<div class="lb-controls">' +
+        '<div class="lb-controls">' +
         '<button class="lb-btn" id="zoomOut">−</button>' +
         '<button class="lb-btn" id="zoomReset">↺</button>' +
         '<button class="lb-btn" id="zoomIn">+</button>' +
-      '</div>' +
+        '</div>' +
 
-      '<div class="lb-image-wrap" id="imageWrap">' +
-        '<img class="lb-img" id="lightboxImage" src="' + c.image + '" alt="' + c.title + '" />' +
-      '</div>' +
+        '<div class="lb-image-wrap" id="imageWrap">' +
+        '<img id="lightboxImage" class="lb-img" src="' + card.image + '">' +
+        '</div>' +
 
-      '<p class="lb-caption">' + c.title + ' — ' + c.meta + '</p>';
+        '<p class="lb-caption">' + card.title + " — " + card.meta + "</p>";
+
+    lightbox.classList.add("active");
+    document.body.style.overflow = "hidden";
+
+    var wrap = document.getElementById("imageWrap");
+    var img = document.getElementById("lightboxImage");
 
     zoomLevel = 1;
+    updateZoom();
 
-    var img = document.getElementById('lightboxImage');
-    var wrap = document.getElementById('imageWrap');
+   function updateZoom() {
 
-    function updateZoom() {
-      img.style.transform = 'scale(' + zoomLevel + ')';
-    }
+    const oldZoom = parseFloat(img.dataset.zoom || 1);
 
-    document.getElementById('zoomIn').addEventListener('click', function(e) {
-      e.stopPropagation();
-      zoomLevel += 0.25;
-      updateZoom();
-    });
+    const oldLeft = wrap.scrollLeft;
+    const oldTop = wrap.scrollTop;
 
-    document.getElementById('zoomOut').addEventListener('click', function(e) {
-      e.stopPropagation();
-      zoomLevel = Math.max(0.5, zoomLevel - 0.25);
-      updateZoom();
-    });
+    if (window.innerWidth <= 768) {
+    img.style.transformOrigin = "top left";
+} else {
+    img.style.transformOrigin = "top center";
+}
 
-    document.getElementById('zoomReset').addEventListener('click', function(e) {
-      e.stopPropagation();
-      zoomLevel = 1;
-      wrap.scrollTop = 0;
-      wrap.scrollLeft = 0;
-      updateZoom();
-    });
+img.style.transform = `scale(${zoomLevel})`;
 
-    
+   
 
-   // Drag to Pan (works anywhere on image)
+    const ratio = zoomLevel / oldZoom;
 
-let isDragging = false;
+    wrap.scrollLeft = oldLeft * ratio;
+    wrap.scrollTop = oldTop * ratio;
+
+    img.dataset.zoom = zoomLevel;
+
+}
+
+    document.getElementById("zoomIn").onclick = function (e) {
+        e.stopPropagation();
+        zoomLevel += 0.25;
+        updateZoom();
+    };
+
+    document.getElementById("zoomOut").onclick = function (e) {
+        e.stopPropagation();
+        zoomLevel = Math.max(0.5, zoomLevel - 0.25);
+        updateZoom();
+    };
+
+    document.getElementById("zoomReset").onclick = function (e) {
+
+        e.stopPropagation();
+
+        zoomLevel = 1;
+
+        wrap.scrollLeft = 0;
+        wrap.scrollTop = 0;
+
+        updateZoom();
+
+    };
+
+  // -----------------------------
+// DRAG (Desktop + Mobile)
+// -----------------------------
+
+let dragging = false;
 let startX = 0;
 let startY = 0;
-let scrollLeft = 0;
-let scrollTop = 0;
+let startLeft = 0;
+let startTop = 0;
 
-img.addEventListener("mousedown", function (e) {
+wrap.style.cursor = "grab";
 
-    e.preventDefault();
+wrap.addEventListener("pointerdown", function(e){
 
-    isDragging = true;
+    dragging = true;
+
+    wrap.setPointerCapture(e.pointerId);
 
     startX = e.clientX;
     startY = e.clientY;
 
-    scrollLeft = wrap.scrollLeft;
-    scrollTop = wrap.scrollTop;
+    startLeft = wrap.scrollLeft;
+    startTop = wrap.scrollTop;
 
     wrap.style.cursor = "grabbing";
+
 });
 
-window.addEventListener("mouseup", function () {
+wrap.addEventListener("pointermove", function(e){
 
-    isDragging = false;
+    if(!dragging) return;
+
+    wrap.scrollLeft = startLeft - (e.clientX - startX);
+    wrap.scrollTop = startTop - (e.clientY - startY);
+
+});
+
+function endDrag(e){
+
+    dragging = false;
+
     wrap.style.cursor = "grab";
 
-});
+    try{
+        wrap.releasePointerCapture(e.pointerId);
+    }catch(err){}
 
-window.addEventListener("mousemove", function (e) {
-
-    if (!isDragging) return;
-
-    e.preventDefault();
-
-    wrap.scrollLeft = scrollLeft - (e.clientX - startX);
-    wrap.scrollTop = scrollTop - (e.clientY - startY);
-
-});
-  } else {
-    lbInner.innerHTML =
-      '<div class="lb-empty">' +
-        '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/>' +
-        '<circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>' +
-        '<strong>' + c.title + '</strong>' +
-        '<span>' + c.meta + '</span>' +
-        '<span style="color:#333;margin-top:4px;">Set an image URL in the cards array to display it here.</span>' +
-      '</div>';
-  }
-
-  lightbox.classList.add('active');
-  document.body.style.overflow = 'hidden';
 }
+
+wrap.addEventListener("pointerup", endDrag);
+wrap.addEventListener("pointercancel", endDrag);
+wrap.addEventListener("pointerleave", endDrag);
+
+}   // <-- THIS closes openLightbox()
+
+// ── Close Lightbox ───────────────────────────────────────────────
 
 function closeLightbox() {
-  lightbox.classList.remove('active');
-  document.body.style.overflow = '';
+
+    lightbox.classList.remove("active");
+    document.body.style.overflow = "";
+
 }
+lbClose.onclick = closeLightbox;
 
-lbClose.addEventListener('click', closeLightbox);
+lightbox.onclick = function (e) {
 
-lightbox.addEventListener('click', function(e) {
-  if (e.target === lightbox) closeLightbox();
+    if (e.target === lightbox) {
+
+        closeLightbox();
+
+    }
+
+};
+
+document.addEventListener("keydown", function (e) {
+
+    if (e.key === "Escape") {
+
+        closeLightbox();
+
+    }
+
 });
 
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeLightbox();
-});
+
 </script>
 </body>
 </html>

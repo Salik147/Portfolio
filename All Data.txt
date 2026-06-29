@@ -1,0 +1,188 @@
+Restaurant card data
+
+// ── Card data ───────────────────────────────────────────────────
+var cards = [
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd1.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd11.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd111.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd2.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd22.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd222.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd3.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd33.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd333.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd4.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd444.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd5.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd555.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd6.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd666.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd7.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd777.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd8.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd88.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd9.png' },
+  { title: 'Cravings.pk', meta: 'Desktop Design · 2026', image: 'rd99.png' }
+];
+
+
+Tab Card Data
+
+ // ── Card data ───────────────────────────────────────────────────
+  // To add an image: set image to a URL string, e.g. 'images/shot1.jpg'
+  var cards = [
+    { title: 'Cravings.pk', meta: 'Tab Design · 2026', image: 'rt1.png' },
+    { title: 'Cravings.pk', meta: 'Tab Design · 2026',  image: 'rt11.png' },
+    { title: 'Cravings.pk', meta: 'Tab Design · 2026',  image: 'rt111.png' },
+    { title: 'Cravings.pk', meta: 'Tab Design · 2026',  image: 'rt2.png' },
+    { title: 'Cravings.pk', meta: 'Tab Design · 2026',  image: 'rt3.png' },
+    { title: 'Cravings.pk', meta: 'Tab Design· 2026',  image: 'rt4.png' },
+    { title: 'Cravings.pk', meta: 'Tab Design · 2026',  image: 'rt5.png' },
+    { title: 'Cravings.pk', meta: 'Tab Design · 2026',  image: 'rt6.png' },
+    { title: 'Cravings.pk', meta: 'Tab Design · 2026',  image: 'rt7.png' },
+    { title: 'Cravings.pk', meta: 'Tab Design · 2026',  image: 'rt8.png' },
+    { title: 'Cravings.pk', meta: 'Tab Design · 2026',  image: 'rt9.png' },
+    { title: 'Cravings.pk', meta: 'Tab Design · 2026',  image: 'rt10.png' },
+    
+    
+  ];
+
+
+Mobile Card Data
+
+ // ── Card data ───────────────────────────────────────────────────
+  // To add an image: set image to a URL string, e.g. 'images/shot1.jpg'
+  var cards = [
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026', image: 'rm1.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm11.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm111.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm2.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm3.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm4.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm5.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm6.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm7.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm8.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm9.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm10.png' },
+    { title: 'Cravings.pk', meta: 'Mobile Design · 2026',  image: 'rm11a.png' }
+    
+    
+  ];
+
+
+
+
+Desktop IT
+
+// ── Card data ───────────────────────────────────────────────────
+  // To add an image: set image to a URL string, e.g. 'images/shot1.jpg'
+  var cards = [
+    { title: 'SALTECH', meta: 'Desktop Design · 2026', image: 'id1.png' },
+    { title: 'SALTECH', meta: 'Desktop Design · 2026',  image: 'id11.png' },
+    { title: 'SALTECH', meta: 'Desktop Design · 2026',  image: 'id111.png' },
+    { title: 'SALTECH', meta: 'Desktop Design · 2026',  image: 'id2.png' },
+    { title: 'SALTECH', meta: 'Desktop Design · 2026',  image: 'id3.png' },
+    { title: 'SALTECH', meta: 'Desktop Design · 2026',  image: 'id4.png' },
+   
+    
+    
+  ];
+
+
+tab
+
+<script>
+  // ── Card data ───────────────────────────────────────────────────
+  // To add an image: set image to a URL string, e.g. 'images/shot1.jpg'
+  var cards = [
+    { title: 'SALTECH', meta: 'Tab Design · 2026', image: 'it1.png' },
+    { title: 'SALTECH', meta: 'Tab Design · 2026',  image: 'it11.png' },
+    { title: 'SALTECH', meta: 'Tab Design · 2026',  image: 'it111.png' },
+    { title: 'SALTECH', meta: 'Tab Design · 2026',  image: 'it2.png' },
+    { title: 'SALTECH', meta: 'Tab Design · 2026',  image: 'it3.png' },
+    { title: 'SALTECH', meta: 'Tab Design · 2026',  image: 'it4.png' },
+    { title: 'SALTECH', meta: 'Tab Design · 2026',  image: 'it5.png' },
+    { title: 'SALTECH', meta: 'Tab Design · 2026',  image: 'it6.png' },
+    { title: 'SALTECH', meta: 'Tab Design · 2026',  image: 'it7.png' },
+  
+    
+    
+  ];
+
+
+mobile
+
+<script>
+  // ── Card data ───────────────────────────────────────────────────
+  // To add an image: set image to a URL string, e.g. 'images/shot1.jpg'
+  var cards = [
+    { title: 'SALTECH', meta: 'Mobile Design · 2026', image: 'im1.png' },
+    { title: 'SALTECH', meta: 'Mobile Design · 2026',  image: 'im11.png' },
+    { title: 'SALTECH', meta: 'Mobile Design · 2026',  image: 'im111.png' },
+    { title: 'SALTECH', meta: 'Mobile Design · 2026',  image: 'im2.png' },
+    { title: 'SALTECH', meta: 'Mobile Design · 2026',  image: 'im3.png' },
+    { title: 'SALTECH', meta: 'Mobile Design · 2026',  image: 'im4.png' },
+    
+    
+    
+  ];
+
+
+
+Store Desktop
+
+ // ── Card data ───────────────────────────────────────────────────
+  // To add an image: set image to a URL string, e.g. 'images/shot1.jpg'
+  var cards = [
+    { title: 'Store', meta: 'Desktop Design · 2026', image: 'ed1.png' },
+    { title: 'Store', meta: 'Desktop Design · 2026',  image: 'ed11.png' },
+    { title: 'Store', meta: 'Desktop Design · 2026',  image: 'ed21.png' },
+    { title: 'Store', meta: 'Desktop Design · 2026',  image: 'ed2.png' },
+    { title: 'Store', meta: 'Desktop Design · 2026',  image: 'ed3.png' },
+    { title: 'Store', meta: 'Desktop Design · 2026',  image: 'ed4.png' },
+    { title: 'Store', meta: 'Desktop Design · 2026',  image: 'ed5.png' },
+    { title: 'Store', meta: 'Desktop Design · 2026',  image: 'ed6.png' },
+   
+    
+    
+  ];
+
+
+
+tab
+
+
+// ── Card data ───────────────────────────────────────────────────
+  // To add an image: set image to a URL string, e.g. 'images/shot1.jpg'
+  var cards = [
+    { title: 'Store', meta: 'Tab Design · 2026', image: 'et1.png' },
+    { title: 'Store', meta: 'Tab Design · 2026',  image: 'et11.png' },
+    { title: 'Store', meta: 'Tab Design · 2026',  image: 'et2.png' },
+    { title: 'Store', meta: 'Tab Design · 2026',  image: 'et3.png' },
+    { title: 'Store', meta: 'Tab Design · 2026',  image: 'et4.png' },
+    { title: 'Store', meta: 'Tab Design · 2026',  image: 'et5.png' },
+    { title: 'Store', meta: 'Tab Design · 2026',  image: 'et6.png' },
+    { title: 'Store', meta: 'Tab Design · 2026',  image: 'et7.png' },
+  
+    
+    
+  ];
+
+
+mobile
+
+ // ── Card data ───────────────────────────────────────────────────
+  // To add an image: set image to a URL string, e.g. 'images/shot1.jpg'
+  var cards = [
+    { title: 'Store', meta: 'Mobile Design · 2026', image: 'em1.png' },
+    { title: 'Store', meta: 'Mobile Design · 2026',  image: 'em11.png' },
+    { title: 'Store', meta: 'Mobile Design · 2026',  image: 'em2.png' },
+    { title: 'Store', meta: 'Mobile Design · 2026',  image: 'em3.png' },
+    { title: 'Store', meta: 'Mobile Design · 2026',  image: 'em4.png' },
+    { title: 'Store', meta: 'Mobile Design · 2026',  image: 'em5.png' },
+    { title: 'Store', meta: 'Mobile Design · 2026',  image: 'em6.png' },
+    
+    
+    
+  ];
